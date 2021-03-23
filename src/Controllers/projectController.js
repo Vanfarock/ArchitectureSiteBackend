@@ -1,9 +1,27 @@
-var ProjectModel = require('../Models/projectModel');
+const projectService = require('../Services/projectService')
 
-exports.project_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Project list');
-};
+module.exports = {
+    projectList: function(req, res) {
+        projectService.getAll(function(err, data) {
+            if (err) {
+                res.status(400).send(err.errors)
+            }
+            else {
+                res.send(data)
+            }
+        })
+    },
 
-exports.project_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Project detail')
+    projectDetail: function(req, res) {
+        const projectId = req.params['projectId']
+
+        projectService.getById(projectId, function(err, data) {
+            if (err) {
+                res.status(400).send(err.errors)
+            }
+            else {
+                res.send(data)
+            }
+        })
+    }
 }

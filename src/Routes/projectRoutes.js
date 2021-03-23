@@ -3,7 +3,7 @@ const router = express.Router();
 
 const projectController = require('../Controllers/projectController');
 
-router.get('/', projectController.project_list)
-router.get('/:projectId', projectController.project_detail)
+router.get('/', projectController.projectList)
+router.get('/:projectId', projectController.projectDetail)
 
 module.exports = router;

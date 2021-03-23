@@ -5,7 +5,7 @@ const ProjectModel = mongoose.model('project', new mongoose.Schema({
         type: String,
         required: true,
     },
-    release_date: {
+    releaseDate: {
         type: Date,
         required: true,
     },
