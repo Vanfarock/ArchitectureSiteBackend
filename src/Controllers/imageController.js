@@ -1,9 +1,40 @@
-var ImageModel = require('../Models/imageModel');
+const imageService = require('../Services/imageService')
 
-exports.imageList = function(req, res) {
-    res.send('NOT IMPLEMENTED: Image list');
-};
+module.exports = {
+    imageList: function(req, res) {
+        imageService.getAll(function(err, data) {
+            if (err) {
+                res.status(500).send(err)
+            }
+            else {
+                res.send(data)
+            }
+        })
+    },
 
-exports.imageDetail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Image detail')
+    imageDetail: function(req, res) {
+        const imageId = req.params['imageId']
+        
+        imageService.getById(imageId, function(err, data) {
+            if (err) {
+                console.error(err)
+                res.status(500).send(err)
+            }
+            else {
+                res.send(data)
+            }
+        })
+    },
+
+    createImage: function(req, res) {
+        imageService.create(req.body, function(err) {
+            if (err) {
+                console.error(err)
+                res.status(500).send(err)
+            }
+            else {
+                res.json({})
+            }
+        })
+    },
 }

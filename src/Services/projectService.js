@@ -7,5 +7,10 @@ module.exports = {
 
     getById: function(projectId, callback) {
         projectModel.findById(projectId, callback)
-    }
+    },
+
+    create: function(data, callback) {
+        const instance = new projectModel(data)
+        instance.save(callback)
+    },
 }

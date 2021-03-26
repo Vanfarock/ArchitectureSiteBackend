@@ -9,7 +9,14 @@ const ImageModel = mongoose.model('image', new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
-    content: Buffer
+    content: {
+        type: Buffer,
+        required: true,
+    },
+    contentType: {
+        type: String,
+        required: true
+    }
 }));
 
 module.exports = ImageModel;
